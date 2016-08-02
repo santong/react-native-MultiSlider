@@ -15,23 +15,30 @@ import {
 import MultiThumbsSlider from './source/MultiThumbsSlider'
 
 class MultiSlider extends Component {
-  
   constructor(props) {
     super(props);
     this.state = {
       leftValue: 0,
-      rightValue: 0.8,
+      rightValue: 0.5,
     };
   }
 
   render() {
     return (
-      <View style = {styles.container}>
-        <MultiThumbsSlider
-          leftValue = {this.state.leftValue}
-          rightValue = {this.state.rightValue}
-          onLeftValueChange = {(leftValue) => this.setState({leftValue})}
-          onRightValueChange = {(rightValue) => this.setState({rightValue})}/>
+      <View style = {{flex: 1, backgroundColor: 'white'}}>
+          <View style = {styles.container}>
+            <MultiThumbsSlider
+              trackWidth = {300}
+              defaultTrackColor = {'#e3e3e3'}
+              leftThumbColor = {'red'}
+              rightThumbColor = {'blue'}
+              rangeColor = {'pink'}
+              leftValue = {this.state.leftValue}
+              rightValue = {this.state.rightValue}
+              onLeftValueChange = {(leftValue) => this.setState({leftValue})}
+              onRightValueChange = {(rightValue) => this.setState({rightValue})}
+            />
+        </View>
       </View>
     );
   }
@@ -41,7 +48,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     marginTop: 50,
-    backgroundColor: '#F5FCFF',
   },
 });
 
