@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import MultiThumbsSlider from './source/MultiThumbsSlider'
+import MultiSliders from './MultiSlider'
 
 class MultiSlider extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class MultiSlider extends Component {
     return (
       <View style = {{flex: 1, backgroundColor: 'white'}}>
           <View style = {styles.container}>
-            <MultiThumbsSlider
+            <MultiSliders
               trackWidth = {300}
               defaultTrackColor = {'#e3e3e3'}
               leftThumbColor = {'red'}

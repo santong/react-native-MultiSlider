@@ -22,7 +22,7 @@ const TRACK_SIZE = 30;
 var currentThumb;
 
 
-class MultiThumbsSlider extends Component {
+class MultiSlider extends Component {
 
   constructor(props) {
     super(props);
@@ -368,4 +368,4 @@ var styles = StyleSheet.create({
 
 });
 
-module.exports = MultiThumbsSlider;
+module.exports = MultiSlider;

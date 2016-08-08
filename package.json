@@ -1,13 +1,37 @@
 {
-  "name": "MultiSlider",
-  "version": "0.0.1",
-  "private": true,
+  "name": "react-native-MultiSlider",
+  "description": "A JavaScript Multiple slider component for react-native. Can be used on Android and iOS",
+  "version": "0.1.2",
+  "license": "MIT",
+  "main": "MultiSlider.js",
+  "files": ["MultiSlider.js"],
+  "keywords": [
+    "react-native",
+    "slider",
+    "react-component",
+    "ios",
+    "android"
+  ],
+  "author": {
+    "name": "Santong",
+    "email": "bensendbs@gmail.com",
+    "url": "https://github.com/santong"
+  },
+  "bugs": {
+    "url": "https://github.com/santong/react-native-MultiSlider/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santong/react-native-MultiSlider"
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react": "15.2.1",
-    "react-native": "0.30.0",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+  	"react": "15.2.1",
+    "react-native": "0.30.0"
   }
 }
