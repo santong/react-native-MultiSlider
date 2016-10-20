@@ -4,7 +4,9 @@
   "version": "0.1.2",
   "license": "MIT",
   "main": "MultiSlider.js",
-  "files": ["MultiSlider.js"],
+  "files": [
+    "MultiSlider.js"
+  ],
   "keywords": [
     "react-native",
     "slider",
@@ -31,7 +33,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-  	"react": "15.2.1",
-    "react-native": "0.30.0"
+    "react": "15.3.1",
+    "react-native": "0.35.0"
   }
 }
