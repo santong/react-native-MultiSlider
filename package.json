@@ -1,7 +1,7 @@
 {
   "name": "react-native-MultiSlider",
   "description": "A JavaScript Multiple slider component for react-native. Can be used on Android and iOS",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "main": "MultiSlider.js",
   "files": [
