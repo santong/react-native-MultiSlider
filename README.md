@@ -37,6 +37,16 @@ class test extends Component {
               onRightValueChange = {(rightValue) => this.setState({rightValue})}
             />
         </View>
+        <TouchableOpacity onPress = {() => this.onPress(true)}>
+          <View style = {styles.button}>
+            <Text>Click to disable</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress = {() => this.onPress(false)}>
+          <View style = {styles.button}>
+            <Text>Click to able</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
