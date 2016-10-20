@@ -43,6 +43,7 @@ class MultiSlider extends Component {
         height: 0
       },
 
+      disabled: false,
       leftValue: new Animated.Value(this.props.leftValue),
       rightValue: new Animated.Value(this.props.rightValue),
     };
@@ -91,7 +92,6 @@ class MultiSlider extends Component {
   }
 
   componentWillMount() {
-
     // gesture func of left thumb
     this._leftPanResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => this._handleStartShouldSetPanResponder (evt, gestureState),
@@ -115,7 +115,16 @@ class MultiSlider extends Component {
     });
   }
 
+  // Sets whether the slider can slide, and true is disabled
+  setDisable(flag) {
+    this.setState({
+      disabled: flag,
+    });
+  }
+
   render() {
+    console.log('=========================');
+    console.log(this.state.disabled);
     const {
       minValue,
       maxValue,
@@ -216,6 +225,13 @@ class MultiSlider extends Component {
       leftValue,
       rightValue,
     } = this.state;
+
+    if (this.state.disabled) {
+      console.log('------------------00001');
+      return;
+    }
+    console.log('------------------111111111');
+
 
     let nextX = this._getValue(gestureState.dx);
 
