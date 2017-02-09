@@ -43,7 +43,7 @@ class MultiSlider extends Component {
         height: 0
       },
 
-      disabled: false,
+      disabled: this.props.disabled,
       leftValue: new Animated.Value(this.props.leftValue),
       rightValue: new Animated.Value(this.props.rightValue),
     };
@@ -79,6 +79,7 @@ class MultiSlider extends Component {
     onRightValueChange: PropTypes.func,           // callback when value changed
     onRightSlidingStart: PropTypes.func,          // callback when start slide
     onRightSlidingComplete: PropTypes.func,       // callback when slide completed
+    disabled: PropTypes.bool
   }
 
   static defaultProps = {
@@ -120,9 +121,10 @@ class MultiSlider extends Component {
   {
     if(nextProps != this.props) {
       this.setState({
-          leftValue: new Animated.Value(this.props.leftValue),
-          rightValue: new Animated.Value(this.props.rightValue)
-      })
+          leftValue: new Animated.Value(nextProps.leftValue),
+          rightValue: new Animated.Value(nextProps.rightValue),
+          disabled: nextProps.disabled
+      })
     }
   }
 
