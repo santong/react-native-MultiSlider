@@ -115,6 +115,17 @@ class MultiSlider extends Component {
     });
   }
 
+  // Updates the left and right value on prop change
+  componentWillReceiveProps(nextProps)
+  {
+    if(nextProps != this.props) {
+      this.setState({
+          leftValue: new Animated.Value(this.props.leftValue),
+          rightValue: new Animated.Value(this.props.rightValue)
+      })
+    }
+  }
+
   // Sets whether the slider can slide, and true is disabled
   setDisable(flag) {
     this.setState({
