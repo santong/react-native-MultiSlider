@@ -15,7 +15,7 @@ import {
 
 import _ from 'underscore';
 
-// defalut constant
+// default constant
 const THUMB_SIZE = 30;
 const TRACK_SIZE = 30;
 
@@ -79,7 +79,9 @@ class MultiSlider extends Component {
     onRightValueChange: PropTypes.func,           // callback when value changed
     onRightSlidingStart: PropTypes.func,          // callback when start slide
     onRightSlidingComplete: PropTypes.func,       // callback when slide completed
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,                     // component state
+
+    allowSameValues: PropTypes.bool               // allow the sliders to select the same values
   }
 
   static defaultProps = {
@@ -90,6 +92,7 @@ class MultiSlider extends Component {
     minValue: 0,
     minSpace: 0.1,
     trackWidth: 300,
+    allowSameValues: false
   }
 
   componentWillMount() {
@@ -136,8 +139,6 @@ class MultiSlider extends Component {
   }
 
   render() {
-    console.log('=========================');
-    console.log(this.state.disabled);
     const {
       minValue,
       maxValue,
@@ -160,14 +161,16 @@ class MultiSlider extends Component {
       thumbSize,
     } = this.state;
 
+    let thumbSizes = thumbSize.width * (this.props.allowSameValues ? 2 : 1)
+
     let leftThumbLeft = leftValue.interpolate({
         inputRange: [minValue, maxValue],
-        outputRange: [0, containerSize.width - thumbSize.width],
+        outputRange: [0, containerSize.width - thumbSizes],
       });
 
     let rightThumbLeft = rightValue.interpolate({
         inputRange: [minValue, maxValue],
-        outputRange: [containerSize.width - thumbSize.width, 0],
+        outputRange: [containerSize.width - thumbSizes, 0],
     });
 
     let minTrackStyle = {
@@ -240,20 +243,20 @@ class MultiSlider extends Component {
     } = this.state;
 
     if (this.state.disabled) {
-      console.log('------------------00001');
       return;
     }
-    console.log('------------------111111111');
-
 
     let nextX = this._getValue(gestureState.dx);
 
-    if (currentThumb === 'left' && (rightValue._value - nextX) > this.props.minSpace) {
-      leftValue.setValue(nextX);
-      this._fireChangeEvent('onLeftValueChange');
-    } else if (currentThumb === 'right' && (nextX - leftValue._value) > this.props.minSpace) {
-      rightValue.setValue(nextX);
-      this._fireChangeEvent('onRightValueChange');
+    let compareFunc = (lhs,rhs,isGE) => { return isGE ? (lhs >= rhs) : (lhs > rhs)}
+    let compareTo = this.props.allowSameValues ? 0 : this.props.minSpace
+
+    if (currentThumb === 'left' && compareFunc((rightValue._value - nextX),compareTo,this.props.allowSameValues)) {
+        leftValue.setValue(nextX);
+        this._fireChangeEvent('onLeftValueChange');
+    } else if (currentThumb === 'right' && compareFunc((nextX - leftValue._value),compareTo,this.props.allowSameValues)) {
+        rightValue.setValue(nextX);
+        this._fireChangeEvent('onRightValueChange');
     }
 
   }
@@ -261,6 +264,10 @@ class MultiSlider extends Component {
   _handlePanResponderEnd(evt, gestureState) {
     if (_.isEmpty(currentThumb)) {
       return;
+    }
+
+    if (this.state.disabled) {
+        return;
     }
 
     if (currentThumb === 'left') {
@@ -321,11 +328,11 @@ class MultiSlider extends Component {
 
   _getThumbLeft(value: number) {
     let ratio = this._getRatio(value);
-    return ratio * (this.state.containerSize.width - this.state.thumbSize.width);
+    return ratio * (this.state.containerSize.width - (this.state.thumbSize.width * (this.props.allowSameValues ? 2 : 1)));
   }
 
   _getValue(value) {
-    let length = this.state.containerSize.width - this.state.thumbSize.width;
+    let length = this.state.containerSize.width - (this.state.thumbSize.width * (this.props.allowSameValues ? 2 : 1));
     let thumbLeft = this._previousLeft + value;
 
     let ratio = thumbLeft / length;
