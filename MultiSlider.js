@@ -249,14 +249,29 @@ class MultiSlider extends Component {
     let nextX = this._getValue(gestureState.dx);
 
     let compareFunc = (lhs,rhs,isGE) => { return isGE ? (lhs >= rhs) : (lhs > rhs)}
-    let compareTo = this.props.allowSameValues ? 0 : this.props.minSpace
+    let compareTo = this.props.allowSameValues ? 0 : this.props.minSpace;
+    let changeEvent = null;
 
-    if (currentThumb === 'left' && compareFunc((rightValue._value - nextX),compareTo,this.props.allowSameValues)) {
+    if (currentThumb === 'left') {
+      if(compareFunc((rightValue._value - nextX),compareTo,this.props.allowSameValues)) {
         leftValue.setValue(nextX);
-        this._fireChangeEvent('onLeftValueChange');
-    } else if (currentThumb === 'right' && compareFunc((nextX - leftValue._value),compareTo,this.props.allowSameValues)) {
+        changeEvent = 'onLeftValueChange';
+      } else if(this.props.allowSameValues) {
+        leftValue.setValue(rightValue._value);
+        changeEvent = 'onLeftValueChange';
+      }
+    } else if (currentThumb === 'right') {
+      if(compareFunc((nextX - leftValue._value),compareTo,this.props.allowSameValues)) {
         rightValue.setValue(nextX);
-        this._fireChangeEvent('onRightValueChange');
+        changeEvent = 'onRightValueChange';
+      } else if (this.props.allowSameValues) {
+        rightValue.setValue(leftValue._value);
+        changeEvent = 'onRightValueChange';
+      }
+    }
+
+    if(changeEvent != null) {
+      this._fireChangeEvent(changeEvent);
     }
 
   }

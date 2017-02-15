@@ -15,7 +15,7 @@ class MultiSlider extends Component {
     this.state = {
       s1leftValue: 2000,
       s1rightValue: 2017,
-      s2leftValue: 2000,
+      s2leftValue: 1900,
       s2rightValue: 2017,
     };
   }
@@ -56,7 +56,7 @@ class MultiSlider extends Component {
               leftThumbColor = {'red'}
               rightThumbColor = {'blue'}
               rangeColor = {'pink'}
-              minValue = {2000}
+              minValue = {1900}
               maxValue = {2017}
               step = {1}
               allowSameValues = {true}
