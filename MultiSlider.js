@@ -295,10 +295,6 @@ class MultiSlider extends Component {
   _handlePanResponderRequestEnd(evt, gestureState) {
 
   }
-
-  _handlePanResponderEnd(evt, gestureState) {
-
-  }
   /*----------gesture funcs end------------*/
 
 
