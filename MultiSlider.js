@@ -1,9 +1,9 @@
 'use strict';
 
 import React, {
-  Component,
-  PropTypes
+  Component
 } from "react";
+import PropTypes from 'prop-types';
 
 import {
   Animated,
@@ -50,22 +50,22 @@ class MultiSlider extends Component {
   }
 
   static propTypes = {
-    leftValue: React.PropTypes.number,            // left thumb's value
-    rightValue: React.PropTypes.number,           // right thumb's value
+    leftValue: PropTypes.number,            // left thumb's value
+    rightValue: PropTypes.number,           // right thumb's value
 
-    maxValue: React.PropTypes.number,             // max value of track
-    minValue: React.PropTypes.number,             // min value of track
+    maxValue: PropTypes.number,             // max value of track
+    minValue: PropTypes.number,             // min value of track
 
-    step: React.PropTypes.number,                 // value of each step
-    minSpace: React.PropTypes.number,             // min space of thumbs
+    step: PropTypes.number,                 // value of each step
+    minSpace: PropTypes.number,             // min space of thumbs
 
-    trackWidth: React.PropTypes.number,           // track width
+    trackWidth: PropTypes.number,           // track width
 
-    rangeColor: React.PropTypes.string,           // color in range
-    defaultTrackColor: React.PropTypes.string,    // defalut track color
+    rangeColor: PropTypes.string,           // color in range
+    defaultTrackColor: PropTypes.string,    // defalut track color
 
-    leftThumbColor: React.PropTypes.string,       // color of left thumb
-    rightThumbColor: React.PropTypes.string,      // color of right thumb
+    leftThumbColor: PropTypes.string,       // color of left thumb
+    rightThumbColor: PropTypes.string,      // color of right thumb
 
     style: View.propTypes.style,                  // container style
     trackStyle: View.propTypes.style,             // track style
