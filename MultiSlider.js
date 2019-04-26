@@ -150,7 +150,7 @@ class MultiSlider extends Component {
       rightThumbColor,
       trackWidth,
       rangeColor,
-      ...other,
+      ...other
     } = this.props;
 
     let {
